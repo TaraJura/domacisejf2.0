@@ -18,5 +18,6 @@ module Domacisejf
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.action_controller.default_url_options = { host: 'jirin.fun', protocol: 'https' } if rails_env.production?
   end
 end
