@@ -1,0 +1,23 @@
+%h1{style:"text-align:center"}
+  = "Sejf souboru"
+%hr
+#instances.flex 
+  - @instances.each do |instance|
+    .div{style:"margin: 10px; padding: 10px; border: 1px solid black; border-radius: 10px; text-align: center; background-color: #f2f2f2; width: 200px;"}
+      %p
+        = instance.created_at.strftime("%d.%m.%Y %H:%M")
+      %hr
+      = link_to instance.files.filename, rails_blob_path(instance.files, disposition: "attachment")
+      = button_to "Smazat", instance, method: :delete, class: "btn btn-danger", data: { turbo: false }
+%br
+%form.dropzone#myId{:action => "/target"}
+/ button to relod page
+%button.btn.btn-success{type: "button", onclick: "location.reload();", style: "margin-top: 10px;"}
+  = "Save"
+%br
+%br
+%br
+
+.email 
+  = current_user.email
+  = button_to "Odhlásit se", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "right btn btn-danger"
